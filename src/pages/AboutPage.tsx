@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { AboutHeroSection } from "@/components/AboutHeroSection";
@@ -14,63 +14,76 @@ export default function AboutPage() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const totalSections = 3;
 
-  // Hero card
-  const heroY = useTransform(scrollYProgress, [0, 0.25], ["0%", "0%"]);
-  const heroScale = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.45],
-    [1, 0.97, 0.9],
-  );
+  // Handle wheel to snap between sections
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
 
-  // Stats card
-  const statsY = useTransform(
-    scrollYProgress,
-    [0.2, 0.4, 0.55],
-    ["100%", "0%", "0%"],
-  );
-  const statsScale = useTransform(
-    scrollYProgress,
-    [0.35, 0.6, 0.8],
-    [1, 0.97, 0.9],
-  );
+    const handleWheel = (event: WheelEvent) => {
+      // Prevent the normal long scroll behaviour in this section
+      event.preventDefault();
 
-  // Who We Are card
-  // const whoY = useTransform(
-  //   scrollYProgress,
-  //   [0.45, 0.65, 0.85],
-  //   ["100%", "0%", "0%"],
-  // );
-  // const whoScale = useTransform(
-  //   scrollYProgress,
-  //   [0.6, 0.85, 1],
-  //   [1, 0.97, 0.92],
-  // );
+      if (isAnimating) return;
 
-  // Contact card
-  const contactY = useTransform(
-    scrollYProgress,
-    [0.7, 0.88, 1],
-    ["100%", "0%", "0%"],
-  );
-  const contactScale = useTransform(scrollYProgress, [0.88, 1], [1, 1]);
+      const delta = event.deltaY;
+      if (Math.abs(delta) < 10) return;
+
+      setActiveIndex((current) => {
+        let next = current;
+
+        if (delta > 0) {
+          next = Math.min(current + 1, totalSections - 1);
+        } else if (delta < 0) {
+          next = Math.max(current - 1, 0);
+        }
+
+        if (next !== current) {
+          setIsAnimating(true);
+        }
+
+        return next;
+      });
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, [isAnimating, totalSections]);
+
+  // Small lock so a single wheel gesture only moves one section
+  useEffect(() => {
+    if (!isAnimating) return;
+
+    const timeout = setTimeout(() => {
+      setIsAnimating(false);
+    }, 1100);
+
+    return () => clearTimeout(timeout);
+  }, [isAnimating]);
 
   return (
     <SmoothScrollProvider>
       <section
         ref={containerRef}
-        className="relative h-[850vh] bg-black"
+        className="relative h-screen overflow-hidden bg-black"
         style={{ position: "relative" }}
       >
         <div className="sticky top-0 h-screen w-full">
           {/* Hero */}
           <motion.div
             className="absolute inset-0"
-            style={{ y: heroY, scale: heroScale, zIndex: 1 }}
+            animate={{ y: "0%" }}
+            transition={{
+              duration: 1.1,
+              ease: [0.4, 0.0, 0.2, 1],
+            }}
+            style={{ zIndex: 1 }}
           >
             <AboutHeroSection backgroundImage={heroImage} />
           </motion.div>
@@ -78,7 +91,13 @@ export default function AboutPage() {
           {/* Stats */}
           <motion.div
             className="absolute inset-0"
-            style={{ y: statsY, scale: statsScale, zIndex: 2 }}
+            initial={{ y: "100%" }}
+            animate={{ y: activeIndex >= 1 ? "0%" : "100%" }}
+            transition={{
+              duration: 1.1,
+              ease: [0.4, 0.0, 0.2, 1],
+            }}
+            style={{ zIndex: 2 }}
           >
             <AboutStatsSection />
           </motion.div>
@@ -86,7 +105,13 @@ export default function AboutPage() {
           {/* Contact */}
           <motion.div
             className="absolute inset-0"
-            style={{ y: contactY, scale: contactScale, zIndex: 4 }}
+            initial={{ y: "100%" }}
+            animate={{ y: activeIndex >= 2 ? "0%" : "100%" }}
+            transition={{
+              duration: 1.1,
+              ease: [0.4, 0.0, 0.2, 1],
+            }}
+            style={{ zIndex: 4 }}
           >
             <ContactSection backgroundImage={contactImage} />
           </motion.div>
