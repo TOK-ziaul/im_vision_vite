@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { AboutHeroSection } from "@/components/AboutHeroSection";
 import { AboutStatsSection } from "@/components/AboutStatsSection";
-import { AboutWhoWeAreSection } from "@/components/AboutWhoWeAreSection";
 import { ContactSection } from "@/components/ContactSection";
 
 export default function AboutPage() {
@@ -41,16 +40,16 @@ export default function AboutPage() {
   );
 
   // Who We Are card
-  const whoY = useTransform(
-    scrollYProgress,
-    [0.45, 0.65, 0.85],
-    ["100%", "0%", "0%"],
-  );
-  const whoScale = useTransform(
-    scrollYProgress,
-    [0.6, 0.85, 1],
-    [1, 0.97, 0.92],
-  );
+  // const whoY = useTransform(
+  //   scrollYProgress,
+  //   [0.45, 0.65, 0.85],
+  //   ["100%", "0%", "0%"],
+  // );
+  // const whoScale = useTransform(
+  //   scrollYProgress,
+  //   [0.6, 0.85, 1],
+  //   [1, 0.97, 0.92],
+  // );
 
   // Contact card
   const contactY = useTransform(
@@ -82,14 +81,6 @@ export default function AboutPage() {
             style={{ y: statsY, scale: statsScale, zIndex: 2 }}
           >
             <AboutStatsSection />
-          </motion.div>
-
-          {/* Who We Are */}
-          <motion.div
-            className="absolute inset-0"
-            style={{ y: whoY, scale: whoScale, zIndex: 3 }}
-          >
-            <AboutWhoWeAreSection />
           </motion.div>
 
           {/* Contact */}

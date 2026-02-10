@@ -1,314 +1,216 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { useRef, useState } from "react";
-import { Minus } from "lucide-react";
-
-interface Stat {
-  value: string;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-}
+import { motion } from "motion/react";
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
+import ABOUT_IMG from "@/assets/aboutImg.png";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function AboutStatsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [activeTab, setActiveTab] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
-  const stats: Stat[] = [
+  const tabs = [
     {
-      value: "10+",
-      title: "Years",
+      stat: "10+",
+      label: "Years of Experience",
       description:
-        "With more than 10 years of experience, we are the market leader in large LED screens.",
-      category: "EXPERIENCE",
-      image:
-        "https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "Delivering large-scale LED installations for events, architecture, and brands worldwide.",
+      stats: [
+        { value: "3,000+", unit: "m²", label: "Installed LED Displays" },
+        { value: "8", unit: "", label: "Markets Served" },
+        { value: "220", unit: "m²", label: "Largest Single Installation" },
+      ],
     },
     {
-      value: "+3000",
-      title: "m²",
+      stat: "3,000+",
+      label: "Square Meters of LED",
       description:
-        "LED screens available for rent with flexible sizing. Delivered to your needs.",
-      category: "RENTAL SOLUTIONS",
-      image:
-        "https://images.unsplash.com/photo-1740968984962-29087e16ceff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXJnZSUyMExFRCUyMHNjcmVlbiUyMHJlbnRhbCUyMGRpc3BsYXl8ZW58MXx8fHwxNzcwMDM1OTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "Our extensive inventory ensures we can handle projects of any scale, from intimate displays to massive installations.",
+      stats: [
+        { value: "15+", unit: "", label: "LED Product Lines" },
+        { value: "100%", unit: "", label: "Quality Guarantee" },
+        { value: "24/7", unit: "", label: "Technical Support" },
+      ],
     },
     {
-      value: "8",
-      title: "St",
+      stat: "8",
+      label: "Markets Worldwide",
       description:
-        "We have mobile screens in sizes 7-28 sq m for quick delivery and easy set up.",
-      category: "MOBILE SCREENS",
-      image:
-        "https://images.unsplash.com/photo-1701656626623-23ba4581f458?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBMRUQlMjBzY3JlZW4lMjB0cnVjayUyMGluc3RhbGxhdGlvbnxlbnwxfHx8fDE3NzAwMzU5MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      value: "220",
-      title: "m²",
-      description:
-        "We always have sales stock of LEDs for quick installations.",
-      category: "STOCK READY",
-      image:
-        "https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        "From retail to corporate events, we bring cutting-edge LED technology to diverse industries across the globe.",
+      stats: [
+        { value: "500+", unit: "", label: "Projects Completed" },
+        { value: "95%", unit: "", label: "Client Satisfaction" },
+        { value: "50+", unit: "", label: "Global Partners" },
+      ],
     },
   ];
 
-  const handleCardClick = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full bg-black overflow-hidden"
-      style={{ minHeight: "100vh", position: "relative" }}
-    >
-      {/* Green border */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#2BCC07] z-20" />
-
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-24"
-      >
-        <div className="w-full max-w-7xl mx-auto">
-          {/* Section Title */}
+    <section className="relative bg-black py-20 md:py-32">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column - Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-            className="mb-16 text-center"
           >
+            {/* Section Title */}
             <h2
-              className="text-white leading-tight tracking-tight"
+              className="text-white mb-8"
               style={{
-                fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                fontSize: "clamp(2rem, 3.5vw, 3rem)",
                 fontWeight: 300,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.2,
               }}
             >
-              Why Choose <span className="italic">IMvision</span>
+              The IMvision Difference
             </h2>
-          </motion.div>
 
-          {/* Expandable Cards Grid */}
-          <div className="flex gap-0 h-[600px]">
-            {stats.map((stat, index) => {
-              const isExpanded = expandedIndex === index;
+            {/* Underline */}
+            <div className="w-16 h-[1px] bg-white/50 mb-12" />
 
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="relative cursor-pointer overflow-hidden"
-                  onClick={() => handleCardClick(index)}
-                  animate={{
-                    flex: isExpanded ? "1 1 60%" : "1 1 10%",
-                  }}
+            {/* Main Stat */}
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <div className="flex items-baseline gap-4 mb-4">
+                <h3
+                  className="text-white"
                   style={{
-                    borderRight:
-                      index < stats.length - 1
-                        ? "1px solid rgba(43, 204, 7, 0.2)"
-                        : "none",
+                    fontSize: "clamp(4rem, 8vw, 8rem)",
+                    fontWeight: 300,
+                    letterSpacing: "-0.02em",
+                    lineHeight: 0.9,
                   }}
                 >
-                  {/* Collapsed State - Vertical Number */}
-                  <AnimatePresence>
-                    {!isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center"
+                  {tabs[activeTab].stat}
+                </h3>
+                <span
+                  className="text-white/80"
+                  style={{
+                    fontSize: "clamp(1.125rem, 1.5vw, 1.5rem)",
+                    fontWeight: 300,
+                  }}
+                >
+                  {tabs[activeTab].label}
+                </span>
+              </div>
+
+              <p
+                className="text-white/70 max-w-xl mb-12"
+                style={{
+                  fontSize: "clamp(0.95rem, 1.1vw, 1.125rem)",
+                  fontWeight: 300,
+                  lineHeight: 1.7,
+                }}
+              >
+                {tabs[activeTab].description}
+              </p>
+            </motion.div>
+
+            {/* Stats Grid */}
+            <motion.div
+              key={`stats-${activeTab}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="grid grid-cols-3 gap-8 mb-12"
+            >
+              {tabs[activeTab].stats.map((stat, index) => (
+                <div key={index}>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span
+                      className="text-white"
+                      style={{
+                        fontSize: "clamp(1.75rem, 2.5vw, 2.5rem)",
+                        fontWeight: 300,
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {stat.value}
+                    </span>
+                    {stat.unit && (
+                      <span
+                        className="text-white/60"
+                        style={{
+                          fontSize: "clamp(0.875rem, 1vw, 1rem)",
+                          fontWeight: 300,
+                        }}
                       >
-                        <div className="flex flex-col items-center justify-center h-full relative">
-                          {/* Number Index */}
-                          <span
-                            className="text-white/30 mb-8"
-                            style={{
-                              fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
-                              fontWeight: 300,
-                              writingMode: "vertical-rl",
-                              letterSpacing: "0.2em",
-                            }}
-                          >
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-
-                          {/* Value */}
-                          <div className="flex flex-col items-center">
-                            <span
-                              className="text-white"
-                              style={{
-                                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                                fontWeight: 200,
-                                writingMode: "vertical-rl",
-                                letterSpacing: "0.05em",
-                              }}
-                            >
-                              {stat.value}
-                            </span>
-                            <span
-                              className="text-white/60 mt-2"
-                              style={{
-                                fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
-                                fontWeight: 300,
-                                writingMode: "vertical-rl",
-                              }}
-                            >
-                              {stat.title}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-[#2BCC07]/0 hover:bg-[#2BCC07]/5 transition-all duration-500" />
-                      </motion.div>
+                        {stat.unit}
+                      </span>
                     )}
-                  </AnimatePresence>
+                  </div>
+                  <p
+                    className="text-white/50"
+                    style={{
+                      fontSize: "clamp(0.75rem, 0.85vw, 0.875rem)",
+                      fontWeight: 300,
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
 
-                  {/* Expanded State - Full Content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                        className="absolute inset-0 bg-black"
-                      >
-                        {/* Close Button */}
-                        <motion.button
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0 }}
-                          transition={{ duration: 0.3, delay: 0.3 }}
-                          className="absolute top-6 right-6 z-30 w-12 h-12 rounded-full bg-black border border-[#2BCC07] flex items-center justify-center hover:bg-[#2BCC07] hover:text-black transition-all duration-300 cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedIndex(null);
-                          }}
-                        >
-                          <Minus
-                            size={20}
-                            className="text-[#2BCC07] hover:text-black"
-                          />
-                        </motion.button>
+            {/* Tab Indicators */}
+            <div className="flex items-center gap-3 mb-12">
+              {tabs.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    activeTab === index ? "bg-white w-8" : "bg-white/30"
+                  }`}
+                  aria-label={`Switch to tab ${index + 1}`}
+                />
+              ))}
+            </div>
 
-                        {/* Vertical Category Text */}
-                        <motion.div
-                          initial={{ x: -50, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          exit={{ x: -50, opacity: 0 }}
-                          transition={{ duration: 0.5, delay: 0.4 }}
-                          className="absolute left-8 top-0 bottom-0 flex items-center z-20"
-                        >
-                          <span
-                            className="text-white/20 uppercase tracking-widest"
-                            style={{
-                              fontSize: "clamp(0.7rem, 1vw, 0.9rem)",
-                              fontWeight: 400,
-                              writingMode: "vertical-rl",
-                              letterSpacing: "0.3em",
-                            }}
-                          >
-                            {stat.category}
-                          </span>
-                        </motion.div>
+            {/* CTA Button */}
+            <motion.a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 group"
+              whileHover={{ x: 5 }}
+            >
+              <span
+                style={{
+                  fontSize: "clamp(0.875rem, 1vw, 1rem)",
+                  fontWeight: 300,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Talk to an LED Specialist
+              </span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </motion.a>
+          </motion.div>
 
-                        {/* Content Container */}
-                        <div className="absolute inset-0 flex flex-col p-12 pl-20">
-                          {/* Number Badge */}
-                          <motion.div
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
-                            transition={{ duration: 0.5, delay: 0.5 }}
-                            className="flex items-baseline gap-2 mb-6"
-                          >
-                            <span
-                              className="text-white"
-                              style={{
-                                fontSize: "clamp(3rem, 6vw, 5rem)",
-                                fontWeight: 200,
-                                lineHeight: 1,
-                              }}
-                            >
-                              {stat.value}
-                            </span>
-                            <span
-                              className="text-white/70"
-                              style={{
-                                fontSize: "clamp(1.5rem, 2vw, 2rem)",
-                                fontWeight: 300,
-                              }}
-                            >
-                              {stat.title}
-                            </span>
-                          </motion.div>
-
-                          {/* Description */}
-                          <motion.p
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: 20, opacity: 0 }}
-                            transition={{ duration: 0.5, delay: 0.6 }}
-                            className="text-white/80 mb-8 max-w-md"
-                            style={{
-                              fontSize: "clamp(1rem, 1.2vw, 1.125rem)",
-                              fontWeight: 300,
-                              lineHeight: "1.7",
-                            }}
-                          >
-                            {stat.description}
-                          </motion.p>
-
-                          {/* Image */}
-                          <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            transition={{ duration: 0.6, delay: 0.7 }}
-                            className="flex-1 rounded-lg overflow-hidden"
-                            style={{
-                              maxWidth: "500px",
-                              maxHeight: "320px",
-                            }}
-                          >
-                            <img
-                              src={stat.image}
-                              alt={stat.category}
-                              className="w-full h-full object-cover"
-                            />
-                          </motion.div>
-                        </div>
-
-                        {/* Green accent line */}
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          exit={{ scaleX: 0 }}
-                          transition={{ duration: 0.6, delay: 0.5 }}
-                          className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#2BCC07] origin-left"
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
+          {/* Right Column - Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl"
+          >
+            <ImageWithFallback
+              src={ABOUT_IMG}
+              alt="LED Billboard on Busy City Street"
+              className="w-full h-full object-cover"
+            />
+            {/* Subtle overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </section>
   );
 }
