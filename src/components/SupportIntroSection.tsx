@@ -1,23 +1,26 @@
-import { motion } from 'motion/react';
-import { useRef } from 'react';
-import { useInView } from 'motion/react';
-import { Send, Phone } from 'lucide-react';
+import { motion } from "motion/react";
+import { useRef } from "react";
+import { useInView } from "motion/react";
+import { Send, Phone } from "lucide-react";
 
 interface SupportIntroSectionProps {
   onSubmitTicket?: () => void;
   onCallSupport?: () => void;
 }
 
-export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIntroSectionProps) {
+export function SupportIntroSection({
+  onSubmitTicket,
+  onCallSupport,
+}: SupportIntroSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  // const scrollToSection = (id: string) => {
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //   }
+  // };
 
   return (
     <section
@@ -35,9 +38,9 @@ export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIn
           transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
           className="text-white mb-6"
           style={{
-            fontSize: 'clamp(3rem, 8vw, 7rem)',
+            fontSize: "clamp(3rem, 8vw, 7rem)",
             fontWeight: 300,
-            letterSpacing: '-0.02em',
+            letterSpacing: "-0.02em",
             lineHeight: 1,
           }}
         >
@@ -51,12 +54,13 @@ export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIn
           transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
           className="text-white/70 mb-16 max-w-2xl mx-auto"
           style={{
-            fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+            fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
             fontWeight: 300,
             lineHeight: 1.7,
           }}
         >
-          We're here to help. Submit a support ticket or call us directly for immediate assistance.
+          We're here to help. Submit a support ticket or call us directly for
+          immediate assistance.
         </motion.p>
 
         {/* Action Buttons */}
@@ -73,32 +77,37 @@ export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIn
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center gap-3 px-10 py-5 bg-[#2BCC07] overflow-hidden min-w-[240px] justify-center"
             style={{
-              border: '2px solid #2BCC07',
+              border: "2px solid #2BCC07",
             }}
           >
             {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
-                width: '30%',
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)",
+                width: "30%",
               }}
               animate={{
-                x: ['-100%', '400%'],
+                x: ["-100%", "400%"],
               }}
               transition={{
                 duration: 2.5,
                 repeat: Infinity,
-                ease: 'linear',
+                ease: "linear",
                 repeatDelay: 1.5,
               }}
             />
 
-            <Send size={20} className="text-black relative z-10" strokeWidth={2} />
+            <Send
+              size={20}
+              className="text-black relative z-10"
+              strokeWidth={2}
+            />
             <span
               className="text-black relative z-10 tracking-[0.1em] font-medium"
               style={{
-                fontSize: 'clamp(0.875rem, 1.1vw, 1rem)',
+                fontSize: "clamp(0.875rem, 1.1vw, 1rem)",
               }}
             >
               Submit Ticket
@@ -112,7 +121,7 @@ export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIn
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center gap-3 px-10 py-5 bg-transparent overflow-hidden min-w-[240px] justify-center"
             style={{
-              border: '2px solid rgba(255, 255, 255, 0.3)',
+              border: "2px solid rgba(255, 255, 255, 0.3)",
             }}
           >
             {/* Hover glow effect */}
@@ -123,11 +132,15 @@ export function SupportIntroSection({ onSubmitTicket, onCallSupport }: SupportIn
               transition={{ duration: 0.3 }}
             />
 
-            <Phone size={20} className="text-white relative z-10" strokeWidth={2} />
+            <Phone
+              size={20}
+              className="text-white relative z-10"
+              strokeWidth={2}
+            />
             <span
               className="text-white relative z-10 tracking-[0.1em] font-light"
               style={{
-                fontSize: 'clamp(0.875rem, 1.1vw, 1rem)',
+                fontSize: "clamp(0.875rem, 1.1vw, 1rem)",
               }}
             >
               Call Support

@@ -113,7 +113,7 @@ function RentalAccordionItem({ rental }: { rental: Rental }) {
       {/* Header - Always Visible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-8 px-6 lg:px-12 flex items-center justify-between group hover:bg-white/5 transition-colors duration-300"
+        className="cursor-pointer w-full py-8 px-6 lg:px-12 flex items-center justify-between group hover:bg-white/5 transition-colors duration-300"
       >
         <h3
           className="text-white text-left"
@@ -169,7 +169,7 @@ function RentalAccordionItem({ rental }: { rental: Rental }) {
                     href="/contact"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.3 }}
-                    className="inline-flex items-center gap-3 text-[#2BCC07] group"
+                    className="inline-flex items-center gap-3 text-[#2BCC07] group cursor-pointer"
                   >
                     <span
                       style={{

@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
-import { useRef, useState } from 'react';
-import { Minus } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { useRef, useState } from "react";
+import { Minus } from "lucide-react";
 
 interface Stat {
   value: string;
@@ -13,42 +13,50 @@ interface Stat {
 export function AboutStatsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const stats: Stat[] = [
     {
-      value: '10+',
-      title: 'Years',
-      description: 'With more than 10 years of experience, we are the market leader in large LED screens.',
-      category: 'EXPERIENCE',
-      image: 'https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      value: "10+",
+      title: "Years",
+      description:
+        "With more than 10 years of experience, we are the market leader in large LED screens.",
+      category: "EXPERIENCE",
+      image:
+        "https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     },
     {
-      value: '+3000',
-      title: 'm²',
-      description: 'LED screens available for rent with flexible sizing. Delivered to your needs.',
-      category: 'RENTAL SOLUTIONS',
-      image: 'https://images.unsplash.com/photo-1740968984962-29087e16ceff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXJnZSUyMExFRCUyMHNjcmVlbiUyMHJlbnRhbCUyMGRpc3BsYXl8ZW58MXx8fHwxNzcwMDM1OTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      value: "+3000",
+      title: "m²",
+      description:
+        "LED screens available for rent with flexible sizing. Delivered to your needs.",
+      category: "RENTAL SOLUTIONS",
+      image:
+        "https://images.unsplash.com/photo-1740968984962-29087e16ceff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXJnZSUyMExFRCUyMHNjcmVlbiUyMHJlbnRhbCUyMGRpc3BsYXl8ZW58MXx8fHwxNzcwMDM1OTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     },
     {
-      value: '8',
-      title: 'St',
-      description: 'We have mobile screens in sizes 7-28 sq m for quick delivery and easy set up.',
-      category: 'MOBILE SCREENS',
-      image: 'https://images.unsplash.com/photo-1701656626623-23ba4581f458?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBMRUQlMjBzY3JlZW4lMjB0cnVjayUyMGluc3RhbGxhdGlvbnxlbnwxfHx8fDE3NzAwMzU5MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      value: "8",
+      title: "St",
+      description:
+        "We have mobile screens in sizes 7-28 sq m for quick delivery and easy set up.",
+      category: "MOBILE SCREENS",
+      image:
+        "https://images.unsplash.com/photo-1701656626623-23ba4581f458?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBMRUQlMjBzY3JlZW4lMjB0cnVjayUyMGluc3RhbGxhdGlvbnxlbnwxfHx8fDE3NzAwMzU5MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     },
     {
-      value: '220',
-      title: 'm²',
-      description: 'We always have sales stock of LEDs for quick installations.',
-      category: 'STOCK READY',
-      image: 'https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      value: "220",
+      title: "m²",
+      description:
+        "We always have sales stock of LEDs for quick installations.",
+      category: "STOCK READY",
+      image:
+        "https://images.unsplash.com/photo-1653998894571-ae645e479e86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMRUQlMjBzY3JlZW4lMjBleHBlcmllbmNlJTIwdGVjaG5vbG9neSUyMHllYXJzfGVufDF8fHx8MTc3MDAzNTkyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     },
   ];
 
@@ -60,7 +68,7 @@ export function AboutStatsSection() {
     <div
       ref={containerRef}
       className="relative w-full bg-black overflow-hidden"
-      style={{ minHeight: '100vh', position: 'relative' }}
+      style={{ minHeight: "100vh", position: "relative" }}
     >
       {/* Green border */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#2BCC07] z-20" />
@@ -81,7 +89,7 @@ export function AboutStatsSection() {
             <h2
               className="text-white leading-tight tracking-tight"
               style={{
-                fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 fontWeight: 300,
               }}
             >
@@ -93,7 +101,7 @@ export function AboutStatsSection() {
           <div className="flex gap-0 h-[600px]">
             {stats.map((stat, index) => {
               const isExpanded = expandedIndex === index;
-              
+
               return (
                 <motion.div
                   key={index}
@@ -103,10 +111,13 @@ export function AboutStatsSection() {
                   className="relative cursor-pointer overflow-hidden"
                   onClick={() => handleCardClick(index)}
                   animate={{
-                    flex: isExpanded ? '1 1 60%' : '1 1 10%',
+                    flex: isExpanded ? "1 1 60%" : "1 1 10%",
                   }}
                   style={{
-                    borderRight: index < stats.length - 1 ? '1px solid rgba(43, 204, 7, 0.2)' : 'none',
+                    borderRight:
+                      index < stats.length - 1
+                        ? "1px solid rgba(43, 204, 7, 0.2)"
+                        : "none",
                   }}
                 >
                   {/* Collapsed State - Vertical Number */}
@@ -124,13 +135,13 @@ export function AboutStatsSection() {
                           <span
                             className="text-white/30 mb-8"
                             style={{
-                              fontSize: 'clamp(1rem, 1.5vw, 1.5rem)',
+                              fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
                               fontWeight: 300,
-                              writingMode: 'vertical-rl',
-                              letterSpacing: '0.2em',
+                              writingMode: "vertical-rl",
+                              letterSpacing: "0.2em",
                             }}
                           >
-                            {String(index + 1).padStart(2, '0')}
+                            {String(index + 1).padStart(2, "0")}
                           </span>
 
                           {/* Value */}
@@ -138,10 +149,10 @@ export function AboutStatsSection() {
                             <span
                               className="text-white"
                               style={{
-                                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                                fontSize: "clamp(2rem, 4vw, 3.5rem)",
                                 fontWeight: 200,
-                                writingMode: 'vertical-rl',
-                                letterSpacing: '0.05em',
+                                writingMode: "vertical-rl",
+                                letterSpacing: "0.05em",
                               }}
                             >
                               {stat.value}
@@ -149,9 +160,9 @@ export function AboutStatsSection() {
                             <span
                               className="text-white/60 mt-2"
                               style={{
-                                fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+                                fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
                                 fontWeight: 300,
-                                writingMode: 'vertical-rl',
+                                writingMode: "vertical-rl",
                               }}
                             >
                               {stat.title}
@@ -181,13 +192,16 @@ export function AboutStatsSection() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0 }}
                           transition={{ duration: 0.3, delay: 0.3 }}
-                          className="absolute top-6 right-6 z-30 w-12 h-12 rounded-full bg-black border border-[#2BCC07] flex items-center justify-center hover:bg-[#2BCC07] hover:text-black transition-all duration-300"
+                          className="absolute top-6 right-6 z-30 w-12 h-12 rounded-full bg-black border border-[#2BCC07] flex items-center justify-center hover:bg-[#2BCC07] hover:text-black transition-all duration-300 cursor-pointer"
                           onClick={(e) => {
                             e.stopPropagation();
                             setExpandedIndex(null);
                           }}
                         >
-                          <Minus size={20} className="text-[#2BCC07] hover:text-black" />
+                          <Minus
+                            size={20}
+                            className="text-[#2BCC07] hover:text-black"
+                          />
                         </motion.button>
 
                         {/* Vertical Category Text */}
@@ -201,10 +215,10 @@ export function AboutStatsSection() {
                           <span
                             className="text-white/20 uppercase tracking-widest"
                             style={{
-                              fontSize: 'clamp(0.7rem, 1vw, 0.9rem)',
+                              fontSize: "clamp(0.7rem, 1vw, 0.9rem)",
                               fontWeight: 400,
-                              writingMode: 'vertical-rl',
-                              letterSpacing: '0.3em',
+                              writingMode: "vertical-rl",
+                              letterSpacing: "0.3em",
                             }}
                           >
                             {stat.category}
@@ -224,7 +238,7 @@ export function AboutStatsSection() {
                             <span
                               className="text-white"
                               style={{
-                                fontSize: 'clamp(3rem, 6vw, 5rem)',
+                                fontSize: "clamp(3rem, 6vw, 5rem)",
                                 fontWeight: 200,
                                 lineHeight: 1,
                               }}
@@ -234,7 +248,7 @@ export function AboutStatsSection() {
                             <span
                               className="text-white/70"
                               style={{
-                                fontSize: 'clamp(1.5rem, 2vw, 2rem)',
+                                fontSize: "clamp(1.5rem, 2vw, 2rem)",
                                 fontWeight: 300,
                               }}
                             >
@@ -250,9 +264,9 @@ export function AboutStatsSection() {
                             transition={{ duration: 0.5, delay: 0.6 }}
                             className="text-white/80 mb-8 max-w-md"
                             style={{
-                              fontSize: 'clamp(1rem, 1.2vw, 1.125rem)',
+                              fontSize: "clamp(1rem, 1.2vw, 1.125rem)",
                               fontWeight: 300,
-                              lineHeight: '1.7',
+                              lineHeight: "1.7",
                             }}
                           >
                             {stat.description}
@@ -266,8 +280,8 @@ export function AboutStatsSection() {
                             transition={{ duration: 0.6, delay: 0.7 }}
                             className="flex-1 rounded-lg overflow-hidden"
                             style={{
-                              maxWidth: '500px',
-                              maxHeight: '320px',
+                              maxWidth: "500px",
+                              maxHeight: "320px",
                             }}
                           >
                             <img

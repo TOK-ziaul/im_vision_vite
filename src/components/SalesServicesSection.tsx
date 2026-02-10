@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { motion } from "motion/react";
+import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 interface Service {
   id: number;
@@ -14,93 +14,111 @@ interface Service {
 const services: Service[] = [
   {
     id: 1,
-    number: '01',
-    title: 'Indoor LED Displays',
-    description: 'Premium indoor LED solutions designed for retail, corporate, and entertainment environments with stunning clarity and vibrant colors.',
+    number: "01",
+    title: "Indoor LED Displays",
+    description:
+      "Premium indoor LED solutions designed for retail, corporate, and entertainment environments with stunning clarity and vibrant colors.",
     features: [
-      'Fine pixel pitch for close viewing',
-      'High brightness & contrast ratio',
-      'Seamless modular design',
-      'Energy-efficient technology',
+      "Fine pixel pitch for close viewing",
+      "High brightness & contrast ratio",
+      "Seamless modular design",
+      "Energy-efficient technology",
     ],
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
   {
     id: 2,
-    number: '02',
-    title: 'Outdoor LED Billboards',
-    description: 'Weather-resistant, high-brightness outdoor displays that command attention in any environment, day or night.',
+    number: "02",
+    title: "Outdoor LED Billboards",
+    description:
+      "Weather-resistant, high-brightness outdoor displays that command attention in any environment, day or night.",
     features: [
-      'IP65+ weatherproof rating',
-      'Ultra-high brightness (>5000 nits)',
-      'Anti-glare surface treatment',
-      'Remote monitoring & control',
+      "IP65+ weatherproof rating",
+      "Ultra-high brightness (>5000 nits)",
+      "Anti-glare surface treatment",
+      "Remote monitoring & control",
     ],
-    image: 'https://images.unsplash.com/photo-1763671727638-5bc55bb9c980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1763671727638-5bc55bb9c980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
   {
     id: 3,
-    number: '03',
-    title: 'Transparent LED Screens',
-    description: 'Innovative transparent displays that blend digital content with physical environments, perfect for storefronts and architectural installations.',
+    number: "03",
+    title: "Transparent LED Screens",
+    description:
+      "Innovative transparent displays that blend digital content with physical environments, perfect for storefronts and architectural installations.",
     features: [
-      'Up to 85% transparency',
-      'Lightweight aluminum design',
-      'Maintains natural light flow',
-      'Interactive touch options',
+      "Up to 85% transparency",
+      "Lightweight aluminum design",
+      "Maintains natural light flow",
+      "Interactive touch options",
     ],
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
   {
     id: 4,
-    number: '04',
-    title: 'LED Video Walls',
-    description: 'Seamless, large-format video walls for control rooms, broadcast studios, and immersive brand experiences.',
+    number: "04",
+    title: "LED Video Walls",
+    description:
+      "Seamless, large-format video walls for control rooms, broadcast studios, and immersive brand experiences.",
     features: [
-      'Bezel-free seamless design',
-      '4K & 8K resolution options',
-      'Advanced color calibration',
-      '24/7 continuous operation',
+      "Bezel-free seamless design",
+      "4K & 8K resolution options",
+      "Advanced color calibration",
+      "24/7 continuous operation",
     ],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
   {
     id: 5,
-    number: '05',
-    title: 'Curved & Creative LED',
-    description: 'Custom-shaped LED displays that push creative boundaries, from curved screens to 3D installations.',
+    number: "05",
+    title: "Curved & Creative LED",
+    description:
+      "Custom-shaped LED displays that push creative boundaries, from curved screens to 3D installations.",
     features: [
-      'Flexible module configuration',
-      'Custom angles & curves',
-      'Architectural integration',
-      'Artistic installations',
+      "Flexible module configuration",
+      "Custom angles & curves",
+      "Architectural integration",
+      "Artistic installations",
     ],
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
   {
     id: 6,
-    number: '06',
-    title: 'Interactive LED Solutions',
-    description: 'Touch-enabled LED displays that engage audiences through interactive experiences, perfect for retail and exhibitions.',
+    number: "06",
+    title: "Interactive LED Solutions",
+    description:
+      "Touch-enabled LED displays that engage audiences through interactive experiences, perfect for retail and exhibitions.",
     features: [
-      'Multi-touch capability',
-      'Gesture recognition',
-      'Real-time content updates',
-      'Analytics & insights',
+      "Multi-touch capability",
+      "Gesture recognition",
+      "Real-time content updates",
+      "Analytics & insights",
     ],
-    image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80',
+    image:
+      "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920&q=80",
   },
 ];
 
-function ServiceSection({ service, index }: { service: Service; index: number }) {
+function ServiceSection({
+  service,
+  index,
+}: {
+  service: Service;
+  index: number;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: containerRef,
+  //   offset: ["start end", "end start"],
+  // });
 
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   const isEven = index % 2 === 0;
 
@@ -114,7 +132,7 @@ function ServiceSection({ service, index }: { service: Service; index: number })
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className={`lg:col-span-6 relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+            className={`lg:col-span-6 relative ${isEven ? "lg:order-1" : "lg:order-2"}`}
           >
             <div className="relative aspect-[3/2] overflow-hidden">
               <motion.img
@@ -127,7 +145,7 @@ function ServiceSection({ service, index }: { service: Service; index: number })
                 viewport={{ once: true }}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
-              
+
               {/* Small number overlay */}
               <div className="absolute top-6 right-6">
                 <motion.p
@@ -137,10 +155,10 @@ function ServiceSection({ service, index }: { service: Service; index: number })
                   viewport={{ once: true }}
                   className="text-[#2BCC07]"
                   style={{
-                    fontSize: 'clamp(3rem, 6vw, 5rem)',
+                    fontSize: "clamp(3rem, 6vw, 5rem)",
                     fontWeight: 200,
                     lineHeight: 1,
-                    textShadow: '0 2px 20px rgba(43, 204, 7, 0.3)',
+                    textShadow: "0 2px 20px rgba(43, 204, 7, 0.3)",
                     opacity: 0.4,
                   }}
                 >
@@ -156,7 +174,7 @@ function ServiceSection({ service, index }: { service: Service; index: number })
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className={`lg:col-span-6 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+            className={`lg:col-span-6 ${isEven ? "lg:order-2" : "lg:order-1"}`}
           >
             {/* Title */}
             <motion.h3
@@ -166,9 +184,9 @@ function ServiceSection({ service, index }: { service: Service; index: number })
               viewport={{ once: true }}
               className="text-white mb-4"
               style={{
-                fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)',
+                fontSize: "clamp(1.75rem, 2.5vw, 2.5rem)",
                 fontWeight: 400,
-                letterSpacing: '-0.01em',
+                letterSpacing: "-0.01em",
                 lineHeight: 1.2,
               }}
             >
@@ -183,7 +201,7 @@ function ServiceSection({ service, index }: { service: Service; index: number })
               viewport={{ once: true }}
               className="text-white/70 mb-6"
               style={{
-                fontSize: 'clamp(0.9375rem, 1vw, 1rem)',
+                fontSize: "clamp(0.9375rem, 1vw, 1rem)",
                 fontWeight: 300,
                 lineHeight: 1.6,
               }}
@@ -213,7 +231,7 @@ function ServiceSection({ service, index }: { service: Service; index: number })
                     <span
                       className="text-white/50"
                       style={{
-                        fontSize: '0.8125rem',
+                        fontSize: "0.8125rem",
                         fontWeight: 300,
                         lineHeight: 1.5,
                       }}
@@ -238,10 +256,10 @@ function ServiceSection({ service, index }: { service: Service; index: number })
               <span
                 className="text-white/80 group-hover:text-[#2BCC07] transition-colors duration-300"
                 style={{
-                  fontSize: '0.8125rem',
+                  fontSize: "0.8125rem",
                   fontWeight: 400,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
                 }}
               >
                 Get a Quote
@@ -282,7 +300,7 @@ export function SalesServicesSection() {
             />
             <p
               className="tracking-[0.3em] uppercase text-[#2BCC07]"
-              style={{ fontSize: '0.875rem', fontWeight: 400 }}
+              style={{ fontSize: "0.875rem", fontWeight: 400 }}
             >
               Our Services
             </p>
@@ -290,9 +308,9 @@ export function SalesServicesSection() {
           <h2
             className="text-white"
             style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
               fontWeight: 300,
-              letterSpacing: '-0.02em',
+              letterSpacing: "-0.02em",
               lineHeight: 1.1,
             }}
           >

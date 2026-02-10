@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -52,7 +53,19 @@
   --text-lg: 1.125rem;
   --text-base: 1rem;
 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:
+    "Jost",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -149,6 +162,19 @@
     min-height: 100vh;
     overflow-x: clip;
     width: 100%;
+    font-family:
+      "Jost",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
   }
 }
 
@@ -156,9 +182,7 @@
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
 @layer base {
-  :where(
-    :not(:has([class*=" text-"]), :not(:has([class^="text-"])))
-  ) {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
     h1 {
       font-size: var(--text-2xl);
       font-weight: var(--fw-heading);
@@ -213,26 +237,6 @@ html {
   font-size: var(--font-size);
   /* Use clip instead of hidden so position:sticky on header still works */
   overflow-x: clip;
-}
-
-a {
-  font-weight: 500;
-  color: var(--primary);
-  text-decoration: inherit;
-}
-a:hover {
-  opacity: 0.9;
-}
-
-/* Footer: force white text so global a/link styles don’t override */
-footer,
-footer a,
-footer h3,
-footer button {
-  color: #ffffff !important;
-}
-footer a:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 @keyframes slideDown {

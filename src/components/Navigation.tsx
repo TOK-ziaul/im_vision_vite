@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Globe } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/translations/translations";
-import { DUMMY_IMAGE } from "@/assets/dummyImage";
+import logoImg from "@/assets/logo.png";
 
 const navItems = [
   { label: "nav.projects", path: "/projects" },
@@ -52,7 +52,7 @@ export function Navigation() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
-              src={DUMMY_IMAGE}
+              src={logoImg}
               alt="IMvision Logo"
               className="h-8 lg:h-9 w-auto object-contain"
             />
@@ -80,7 +80,7 @@ export function Navigation() {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 text-white/80 hover:text-[#2BCC07] transition-colors duration-300 border border-white/20 hover:border-[#2BCC07] px-3 py-2 rounded"
+              className="cursor-pointer flex items-center gap-2 text-white/80 hover:text-[#2BCC07] transition-colors duration-300 border border-white/20 hover:border-[#2BCC07] px-3 py-2 rounded"
               style={{
                 fontSize: "0.85rem",
                 fontWeight: 400,
@@ -94,7 +94,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white"
+            className="cursor-pointer lg:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -128,7 +128,7 @@ export function Navigation() {
           {/* Mobile Language Toggle */}
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-2 text-white hover:text-[#2BCC07] transition-colors duration-300 border border-white/30 hover:border-[#2BCC07] px-6 py-3 rounded mt-4"
+            className="cursor-pointer flex items-center gap-2 text-white hover:text-[#2BCC07] transition-colors duration-300 border border-white/30 hover:border-[#2BCC07] px-6 py-3 rounded mt-4"
             style={{
               fontSize: "1rem",
               fontWeight: 400,

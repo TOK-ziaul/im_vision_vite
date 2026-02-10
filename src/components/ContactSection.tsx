@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
-import { useInView } from 'motion/react';
-import { useRef } from 'react';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
+import { motion } from "motion/react";
+import { useInView } from "motion/react";
+import { useRef } from "react";
+import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
 
 interface ContactSectionProps {
   backgroundImage: string;
@@ -13,7 +13,12 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" ref={ref} className="relative w-full min-h-screen overflow-hidden" style={{ position: 'relative' }}>
+    <section
+      id="contact"
+      ref={ref}
+      className="relative w-full min-h-screen overflow-hidden"
+      style={{ position: "relative" }}
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <ImageWithFallback
@@ -34,9 +39,9 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
             transition={{ duration: 0.8 }}
             className="text-white mb-8"
             style={{
-              fontSize: 'var(--text-section-title)',
+              fontSize: "var(--text-section-title)",
               fontWeight: 300,
-              letterSpacing: '-0.02em',
+              letterSpacing: "-0.02em",
               lineHeight: 1.2,
             }}
           >
@@ -52,45 +57,50 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white/80 mb-16 max-w-2xl mx-auto"
             style={{
-              fontSize: 'var(--text-body-large)',
+              fontSize: "var(--text-body-large)",
               fontWeight: 300,
               lineHeight: 1.7,
             }}
           >
-            Ready to bring your vision to life? Let's start a conversation about your next project.
+            Ready to bring your vision to life? Let's start a conversation about
+            your next project.
           </motion.p>
 
           {/* CTA Button */}
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
+            }
             transition={{ duration: 0.6, delay: 0.4 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center gap-4 px-8 py-4 bg-black/40 backdrop-blur-sm overflow-hidden mb-24"
+            className="group relative inline-flex items-center gap-4 px-8 py-4 bg-black/40 backdrop-blur-sm overflow-hidden mb-24 rounded-[8px] cursor-pointer"
             style={{
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              boxShadow: '0 0 20px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)',
+              border: "2px solid rgba(255, 255, 255, 0.3)",
+              boxShadow:
+                "0 0 20px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)",
             }}
           >
             {/* Animated glowing trail */}
             <motion.div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
-                width: '30%',
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)",
+                width: "30%",
               }}
               animate={{
-                x: ['-100%', '400%'],
+                x: ["-100%", "400%"],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: 'linear',
+                ease: "linear",
                 repeatDelay: 1,
               }}
             />
-            
+
             {/* Icon */}
             <motion.div
               className="relative z-10"
@@ -100,7 +110,7 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: "easeInOut",
                 repeatDelay: 3,
               }}
             >
@@ -109,29 +119,30 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
                 className="text-white"
                 strokeWidth={2}
                 style={{
-                  filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))',
+                  filter: "drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))",
                 }}
               />
             </motion.div>
-            
+
             {/* Text */}
             <span
               className="relative z-10 text-white tracking-[0.15em] font-light italic"
               style={{
-                fontSize: 'clamp(0.875rem, 1.1vw, 1rem)',
-                textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+                fontSize: "clamp(0.875rem, 1.1vw, 1rem)",
+                textShadow: "0 0 10px rgba(255, 255, 255, 0.3)",
               }}
             >
               Talk to an LED Specialist
             </span>
-            
+
             {/* Pulsing glow on hover */}
             <motion.div
               className="absolute inset-0 -z-10"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               style={{
-                boxShadow: '0 0 40px rgba(255, 255, 255, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1)',
+                boxShadow:
+                  "0 0 40px rgba(255, 255, 255, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1)",
               }}
             />
           </motion.button>
@@ -145,19 +156,28 @@ export function ContactSection({ backgroundImage }: ContactSectionProps) {
           >
             <div className="flex flex-col items-center gap-3">
               <Mail className="text-white/60" size={28} strokeWidth={1.5} />
-              <div className="text-white/90" style={{ fontSize: '1rem', fontWeight: 300 }}>
+              <div
+                className="text-white/90"
+                style={{ fontSize: "1rem", fontWeight: 300 }}
+              >
                 hello@imvision.com
               </div>
             </div>
             <div className="flex flex-col items-center gap-3">
               <Phone className="text-white/60" size={28} strokeWidth={1.5} />
-              <div className="text-white/90" style={{ fontSize: '1rem', fontWeight: 300 }}>
+              <div
+                className="text-white/90"
+                style={{ fontSize: "1rem", fontWeight: 300 }}
+              >
                 +1 (555) 123-4567
               </div>
             </div>
             <div className="flex flex-col items-center gap-3">
               <MapPin className="text-white/60" size={28} strokeWidth={1.5} />
-              <div className="text-white/90" style={{ fontSize: '1rem', fontWeight: 300 }}>
+              <div
+                className="text-white/90"
+                style={{ fontSize: "1rem", fontWeight: 300 }}
+              >
                 Los Angeles, CA
               </div>
             </div>

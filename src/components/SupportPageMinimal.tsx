@@ -92,7 +92,7 @@ export function SupportPageMinimal() {
               setShowForm(true);
               setShowContact(false);
             }}
-            className="px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            className="cursor-pointer px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
             style={{
               fontSize: '1rem',
               fontWeight: 400,
@@ -107,7 +107,7 @@ export function SupportPageMinimal() {
               setShowContact(true);
               setShowForm(false);
             }}
-            className="px-8 py-3 bg-transparent text-black border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors"
+            className="cursor-pointer px-8 py-3 bg-transparent text-black border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors"
             style={{
               fontSize: '1rem',
               fontWeight: 400,
@@ -159,7 +159,7 @@ export function SupportPageMinimal() {
                   <button
                     key={step.number}
                     onClick={() => setCurrentStep(step.number as FormStep)}
-                    className="flex items-center gap-2 transition-colors"
+                    className="cursor-pointer flex items-center gap-2 transition-colors"
                     style={{ fontFamily: 'Jost, sans-serif' }}
                   >
                     <div
@@ -459,7 +459,7 @@ export function SupportPageMinimal() {
                     <button
                       type="button"
                       onClick={handleBack}
-                      className="px-8 py-3 bg-transparent text-black border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors"
+                      className="cursor-pointer px-8 py-3 bg-transparent text-black border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors"
                       style={{
                         fontSize: '1rem',
                         fontWeight: 400,
@@ -474,7 +474,7 @@ export function SupportPageMinimal() {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors min-w-[140px]"
+                      className="cursor-pointer px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors min-w-[140px]"
                       style={{
                         fontSize: '1rem',
                         fontWeight: 400,
@@ -486,7 +486,7 @@ export function SupportPageMinimal() {
                   ) : (
                     <button
                       type="submit"
-                      className="px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors min-w-[140px]"
+                      className="cursor-pointer px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors min-w-[140px]"
                       style={{
                         fontSize: '1rem',
                         fontWeight: 400,

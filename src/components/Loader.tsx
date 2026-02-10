@@ -1,6 +1,6 @@
-import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { DUMMY_IMAGE } from "@/assets/dummyImage";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import logoImg from "@/assets/logo.png";
 
 export function Loader() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,31 +22,31 @@ export function Loader() {
       transition={{ duration: 0.5, delay: 3 }}
       className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
       onAnimationComplete={() => {
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = "unset";
       }}
     >
       <div className="text-center">
         <div className="relative overflow-hidden">
-          <motion.img 
-            src={DUMMY_IMAGE} 
-            alt="IMvision Logo" 
+          <motion.img
+            src={logoImg}
+            alt="IMvision Logo"
             className="h-20 lg:h-24 w-auto object-contain mx-auto mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           />
-          
+
           {/* Animated reveal overlay - reveals logo from left to right */}
           <motion.div
             initial={{ left: 0, right: 0 }}
-            animate={{ left: '100%', right: 0 }}
-            transition={{ 
-              duration: 2.2, 
+            animate={{ left: "100%", right: 0 }}
+            transition={{
+              duration: 2.2,
               delay: 0.3,
-              ease: [0.65, 0, 0.35, 1]
+              ease: [0.65, 0, 0.35, 1],
             }}
             className="absolute top-0 bottom-0 bg-black"
-            style={{ position: 'absolute' }}
+            style={{ position: "absolute" }}
           />
         </div>
 
